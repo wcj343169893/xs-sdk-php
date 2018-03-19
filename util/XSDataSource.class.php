@@ -22,6 +22,7 @@ abstract class XSDataSource
 	protected $type, $arg;
 	protected $inCli;
 	private $dataList, $dataPos;
+	protected $previd=0;//上次执行得到的最大id
 
 	/**
 	 * 构造函数
@@ -75,6 +76,7 @@ abstract class XSDataSource
 		}
 		$data = $this->dataList[$this->dataPos];
 		$this->dataPos++;
+		$this->previd=$data["id"];//循环赋值，最后剩下的肯定最大
 		return $data;
 	}
 
@@ -222,9 +224,14 @@ class XSDatabaseDataSource extends XSDataSource
 		if ($this->limit <= 0) {
 			return false;
 		}
-		$sql = $this->sql . ' LIMIT ' . min(self::PLIMIT, $this->limit) . ' OFFSET ' . $this->offset;
+		$wheresql=" where id > ".$this->previd." order by id asc";
+		//判断是否存在where
+		if(stripos($this->sql, "where") >0){
+			$wheresql=" and id > ".$this->previd." order by id asc";
+		}
+		$sql = $this->sql .$wheresql. ' LIMIT ' . min(self::PLIMIT, $this->limit) . ' OFFSET ' . $this->offset;
 		$this->limit -= self::PLIMIT;
-		$this->offset += self::PLIMIT;
+		//$this->offset += self::PLIMIT;
 		return $this->db->query($sql);
 	}
 
