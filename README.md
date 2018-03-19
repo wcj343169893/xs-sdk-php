@@ -46,7 +46,7 @@ composer require --prefer-dist hightman/xunsearch "*@beta"
 然后运行 `composer install`
 
 ```
-"hightman/xunsearch": "*@beta"
+"mofing/xunsearch": "~1.4"
 ```
 
 > tip: 如果您打算用代码仓库中的最新版本，请将星号改为 dev-master。
