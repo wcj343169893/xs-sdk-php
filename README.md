@@ -29,7 +29,7 @@ Composer 支持
 
 自 v1.4.9 起，通过 subtree 功能将 xs-sdk-php 分离成为一个只读的子仓库，
 以支持通过 [composer](https://getcomposer.org) 安装。我们的包名称为
-`hightman/xunsearch`，内含全部 PHP-SDK 的库文件，还包括支持 Yii 的扩展类。
+`mofing/xunsearch`，内含全部 PHP-SDK 的库文件，还包括支持 Yii 的扩展类。
 
 
 ### 安装
@@ -39,7 +39,7 @@ Composer 支持
 可以直接运行
 
 ```
-composer require --prefer-dist hightman/xunsearch "*@beta"
+composer require --prefer-dist mofing/xunsearch "~1.4"
 ```
 
 或者将以下内容添加到您的项目根目录 `composer.json` 中的 `require` 章节，
